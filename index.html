@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="icons/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Список фильмов</title>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="header__title">Список фильмов</h1>
+            <time class="header__datetime" datetime="2025">2025</time>
+            <h2 class="header__subtitle">Посмотреть</h2>
+        </div>
+    </header>
+    <main class="main">
+        <div class="container">
+            <div class="main__content-wrapper">
+                <div class="main__content-container">
+                    <form class="main__form-wrapper" action="#">
+                        <input class="main__input" type="text" placeholder="Добавить фильм">
+                        <button class="main__button" type="submit">
+                            <img class="main__button-img" src="./icons/arrow.svg" alt="Добавить фильм">
+                        </button>
+                    </form>
+                    <ul class="main__movie-list">
+                        <li class="main__movie-item">
+                            <div class="main__movie-group">
+                                <input class="main__movie-input" type="checkbox" id="movie1">
+                                <label class="main__movie-label" for="movie1">Остров проклятых</label>
+                            </div>
+                            <button class="main__movie-delete">
+                                <img class="main__movie-delete-img" src="./icons/delete.svg" alt="Удалить">
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="index.js"></script>
+</body>
+</html>
