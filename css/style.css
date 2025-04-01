@@ -72,13 +72,16 @@ body{
     border: none;
     background: transparent;
     border-bottom: 1px solid #F3F6F9;
-    opacity: 50%;
+    opacity: 100%;
     outline: none;
     font-size: 30px;
     line-height: 100%;
     letter-spacing: -0.6px;
     color: #F3F6F9;
     padding-bottom: 15px;
+}
+.main__input::placeholder{
+    opacity: 50%;
 }
 .main__button{
     background-color: #6532F8;
