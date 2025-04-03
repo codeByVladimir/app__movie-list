@@ -7,10 +7,15 @@ const arrToLocalStorage = [];
 buttonNode.addEventListener('click', () => {
     const movieName = getMovieFromUser(inputNode);
     renderMovieFromUser(movieName);
+    checkClickCheckbox();
     inputNode.value = '';
 })
 
 function getMovieFromUser(input){
+    if(input.value === ""){
+        alert('Введите название фильма!');
+        return;
+    }
     return input.value;
 };
 
@@ -46,6 +51,22 @@ function renderMovieFromUser(movieName){
     movieGroup.appendChild(movieLabel);
     movieItem.appendChild(movieGroup);
     movieItem.appendChild(movieBtnRemoveItem);
-
+    //заставляем тег <ul> принять дочерним элементом описанное выше
     movieListNode.appendChild(movieItem);
 }
+
+function checkClickCheckbox(){
+    movieListNode.addEventListener('change', (event) => {
+        if(event.target.classList.contains('main__movie-input')){
+            const find = event.target.closest('.main__movie-group').querySelector('.main__movie-label');
+            const bgcolor = event.target.closest('.main__movie-item');
+            if (event.target.checked){
+                find.style.textDecoration = 'line-through';
+                bgcolor.style.backgroundColor = '#2A2A2A';
+            }else{
+                find.style.textDecoration = 'none';
+                bgcolor.style.backgroundColor = '#3A3939';
+            }
+        };
+    });
+};
