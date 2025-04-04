@@ -3,8 +3,20 @@ const buttonNode = document.querySelector('.main__button');
 const movieListNode = document.querySelector('.main__movie-list');
 const errorNode = document.querySelector('.main__undefinedOrNone');
 
-const arrToLocalStorage = [];
-
+document.addEventListener('DOMContentLoaded', () => {
+    renderMovieIsFromLocalStorage();
+});
+function renderMovieIsFromLocalStorage(){
+    for(let i = 0; i < localStorage.length; i++){
+        const key = localStorage.key(i);
+        if(key.startsWith('movie-')){
+            const value = localStorage.getItem(key);
+            renderMovieFromUser(value);
+            checkClickCheckbox();
+            checkClickRemoveItem();
+        };
+    };
+}
 buttonNode.addEventListener('click', () => {
     const movieName = getMovieFromUser(inputNode);
     if(!movieName){
@@ -57,6 +69,9 @@ function renderMovieFromUser(movieName){
     movieItem.appendChild(movieBtnRemoveItem);
     //заставляем тег <ul> принять дочерним элементом описанное выше
     movieListNode.appendChild(movieItem);
+
+    //Сохраняем в localStorage
+    localStorage.setItem(movieInput.id, movieName); 
 }
 
 function checkClickCheckbox(){
