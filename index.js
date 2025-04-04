@@ -1,21 +1,25 @@
 const inputNode = document.querySelector('.main__input');
 const buttonNode = document.querySelector('.main__button');
 const movieListNode = document.querySelector('.main__movie-list');
+const errorNode = document.querySelector('.main__undefinedOrNone');
 
 const arrToLocalStorage = [];
 
 buttonNode.addEventListener('click', () => {
     const movieName = getMovieFromUser(inputNode);
+    if(!movieName){
+        errorNode.style.display = 'block';
+        return;
+    }else{
+        errorNode.style.display = 'none';
+    };
     renderMovieFromUser(movieName);
     checkClickCheckbox();
+    checkClickRemoveItem();
     inputNode.value = '';
-})
+});
 
 function getMovieFromUser(input){
-    if(input.value === ""){
-        alert('Введите название фильма!');
-        return;
-    }
     return input.value;
 };
 
@@ -70,3 +74,16 @@ function checkClickCheckbox(){
         };
     });
 };
+
+function checkClickRemoveItem(){
+    movieListNode.addEventListener('click', (event) => {
+        if(event.target.classList.contains('main__movie-delete-img')){
+            const removeItem = event.target.closest('.main__movie-item');
+            if(removeItem){
+                removeItem.remove();
+            }else{
+                console.log('не найдено');
+            }
+        }
+    })
+}

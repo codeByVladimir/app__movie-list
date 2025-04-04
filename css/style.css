@@ -94,7 +94,11 @@ body{
 .main__button:hover{
     border-radius: 62px;
 }
-
+.main__undefinedOrNone{
+    display: none;
+    margin-block: 15px;
+    color: rgb(230, 66, 66);
+}
 .main__movie-list{
     display: flex;
     flex-direction: column;
