@@ -5,6 +5,8 @@ const errorNode = document.querySelector('.main__undefinedOrNone');
 
 document.addEventListener('DOMContentLoaded', () => {
     renderMovieIsFromLocalStorage();
+    checkClickCheckbox();
+    checkClickRemoveItem();
 });
 function renderMovieIsFromLocalStorage(){
     for(let i = 0; i < localStorage.length; i++){
@@ -12,8 +14,6 @@ function renderMovieIsFromLocalStorage(){
         if(key.startsWith('movie-')){
             const value = localStorage.getItem(key);
             renderMovieFromUser(value);
-            checkClickCheckbox();
-            checkClickRemoveItem();
         };
     };
 }
@@ -26,8 +26,6 @@ buttonNode.addEventListener('click', () => {
         errorNode.style.display = 'none';
     };
     renderMovieFromUser(movieName);
-    checkClickCheckbox();
-    checkClickRemoveItem();
     inputNode.value = '';
 });
 
@@ -70,8 +68,8 @@ function renderMovieFromUser(movieName){
     //заставляем тег <ul> принять дочерним элементом описанное выше
     movieListNode.appendChild(movieItem);
 
-    //Сохраняем в localStorage
-    localStorage.setItem(movieInput.id, movieName); 
+    //Сохраняем в localStorage названия фильмов
+    localStorage.setItem(movieInput.id, movieName);
 }
 
 function checkClickCheckbox(){
@@ -94,11 +92,14 @@ function checkClickRemoveItem(){
     movieListNode.addEventListener('click', (event) => {
         if(event.target.classList.contains('main__movie-delete-img')){
             const removeItem = event.target.closest('.main__movie-item');
-            if(removeItem){
+            const removeNameFromLocalStorage = event.target.closest('.main__movie-item').querySelector('.main__movie-label');
+            
+            if(removeItem && removeNameFromLocalStorage){
                 removeItem.remove();
-            }else{
-                console.log('не найдено');
-            }
-        }
-    })
-}
+                localStorage.removeItem(`movie-${removeNameFromLocalStorage.textContent}`)
+            };
+        };
+    });
+};
+
+
