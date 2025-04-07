@@ -5,9 +5,11 @@ const errorNode = document.querySelector('.main__undefinedOrNone');
 
 document.addEventListener('DOMContentLoaded', () => {
     renderMovieIsFromLocalStorage();
+    renderStatusForCheckboxFromLocalStorage();
     checkClickCheckbox();
     checkClickRemoveItem();
 });
+
 function renderMovieIsFromLocalStorage(){
     for(let i = 0; i < localStorage.length; i++){
         const key = localStorage.key(i);
@@ -16,6 +18,30 @@ function renderMovieIsFromLocalStorage(){
             renderMovieFromUser(value);
         };
     };
+}
+function renderStatusForCheckboxFromLocalStorage(){
+    for(let i = 0; i < localStorage.length; i++){
+        const key = localStorage.key(i);
+        if(key.startsWith('status-')){
+            const value = localStorage.getItem(key) === 'true';
+            const movieId = key.replace('status-', 'movie-');
+            const findCheckbox = document.getElementById(movieId);
+            
+            if(findCheckbox){
+                findCheckbox.checked = value;
+                if(value){
+                    const label = findCheckbox.closest('.main__movie-group').querySelector('.main__movie-label');
+                    const item = findCheckbox.closest('.main__movie-item');
+                    console.log(label, item);
+                    
+                    label.style.textDecoration = 'line-through';
+                    item.style.backgroundColor = '#2A2A2A';
+                }
+
+            }
+            
+        }
+    }
 }
 buttonNode.addEventListener('click', () => {
     const movieName = getMovieFromUser(inputNode);
@@ -84,6 +110,13 @@ function checkClickCheckbox(){
                 find.style.textDecoration = 'none';
                 bgcolor.style.backgroundColor = '#3A3939';
             }
+            // Сохраняем значение checkbox в localStorage
+            const movieId = event.target.id;
+            let statusId;
+            if(movieId.startsWith('movie-')){
+                statusId = movieId.replace('movie-', 'status-');
+            }
+            localStorage.setItem(statusId, event.target.checked);
         };
     });
 };
