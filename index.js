@@ -80,7 +80,7 @@ function renderMovieFromUser(movieName){
     // Для кнопки добавляем картинку
     const movieBtnImage = document.createElement('img');
     movieBtnImage.classList.add('main__movie-delete-img');
-    movieBtnImage.src = './icons/delete.svg';
+    movieBtnImage.src = './img/delete.svg';
     movieBtnImage.alt = 'Удалить';
 
     //Вкладываем элементы в родителей
