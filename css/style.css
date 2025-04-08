@@ -49,7 +49,7 @@ body{
 
 
 .main__content-wrapper {
-    min-height: calc(100vh - 300px);
+    min-height: calc(100vh - 350px);
     background-color: #232323;
     margin-top: 45px;
     border-radius: 20px;
