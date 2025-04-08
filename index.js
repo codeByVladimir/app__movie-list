@@ -32,8 +32,6 @@ function renderStatusForCheckboxFromLocalStorage(){
                 if(value){
                     const label = findCheckbox.closest('.main__movie-group').querySelector('.main__movie-label');
                     const item = findCheckbox.closest('.main__movie-item');
-                    console.log(label, item);
-                    
                     label.style.textDecoration = 'line-through';
                     item.style.backgroundColor = '#2A2A2A';
                 }
